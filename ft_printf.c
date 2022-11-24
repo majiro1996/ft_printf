@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:41:29 by manujime          #+#    #+#             */
-/*   Updated: 2022/11/24 12:42:08 by manujime         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:46:31 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,12 @@ int	ft_formats(va_list args, const char format)
 		len += ft_printhex(va_arg(args, unsigned long), format);
 	else if (format == 'd' || format == 'i')
 		len += ft_printnbr(va_arg(args, int));
+	else if (format == 'u')
+		len += ft_printuns(va_arg(args, unsigned int));
 	else if (format == 'p')
 		len += ft_printptr(va_arg(args, void *));
+	else if (format == '%')
+		len += ft_printchar('%');
 	return (len);
 }
 
@@ -73,14 +77,17 @@ int	ft_printf(char const *string, ...)
 	return (len);
 }
 
+/*
 int	main(void)
 {
-	int		len;
-	char	c;
-	char	*string;
-	int		nbr;
-	int		ngbr;
+	int				len;
+	char			c;
+	char			*string;
+	int				nbr;
+	int				ngbr;
+	unsigned int 	unit;
 
+	unit = -1;
 	len = 0;
 	c = 'Y';
 	string = "Yes, strings are working 1234";
@@ -110,4 +117,13 @@ int	main(void)
 	printf("%i \n", len);
 	len = printf("pointer: %p \n", string);
 	printf("%i \n", len);
+	len = ft_printf("percentage %% \n");
+	printf("%i \n", len);
+	len = printf("percentage %% \n");
+	printf("%i \n", len);
+	len = ft_printf("unsigned %u \n", unit);
+	printf("%i \n", len);
+	len = printf("unsigned %u \n", unit);
+	printf("%i \n", len);
 }
+*/

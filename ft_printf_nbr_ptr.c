@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:41:41 by manujime          #+#    #+#             */
-/*   Updated: 2022/11/24 12:41:53 by manujime         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:41:40 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,22 @@ int	ft_printptr(void *ptr)
 	c += ft_printstr("0x");
 	c += ft_printhex((unsigned long)ptr, 'x');
 	return (c);
+}
+
+int	ft_printuns(unsigned int nbr)
+{
+	int	c;
+
+	c = 0;
+	if (nbr / 10 != 0)
+	{
+		if (nbr > 9)
+			c += ft_printnbr(nbr / 10);
+		else
+		{
+			return (ft_printchar((nbr % 10) + '0'));
+		}
+	}
+	ft_printchar((nbr % 10) + '0');
+	return (c + 1);
 }
