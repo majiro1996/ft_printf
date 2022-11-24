@@ -1,0 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_nbr_ptr.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/22 11:41:41 by manujime          #+#    #+#             */
+/*   Updated: 2022/11/24 11:23:08 by manujime         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+int	ft_printnbr(int nbr)
+{
+	int	c;
+
+	c = 0;
+	if (nbr == -2147483648)
+		c += ft_printstr("-2147483648");
+	if (nbr < 0)
+	{
+		c += ft_printchar('-');
+		nbr *= -1;
+	}
+	if (nbr / 10 != 0)
+	{
+		if (nbr > 9)
+			c += ft_printnbr(nbr / 10);
+		else
+		{
+			return (ft_printchar((nbr % 10) + '0'));
+		}
+	}
+	ft_printchar((nbr % 10) + '0');
+	return (c + 1);
+}
+
+int	ft_printhex(unsigned int nbr, char f)
+{
+	int		k;
+	int		c;
+	char	*base;
+	char	str[25];
+
+	c = 0;
+	if (nbr == 0)
+		return (ft_printchar('0'));
+	base = "0123456789abcdef";
+	if (f == 'X')
+		base = "0123456789ABCDEF";
+	while (nbr)
+	{
+		str[c] = base[nbr % 16];
+		nbr = nbr / 16;
+		c++;
+	}
+	k = c;
+	while (c--)
+		ft_printchar(str[c]);
+	return (k);
+}
+
+int	ft_printptr(void *ptr)
+{
+	int		c;
+
+	c = 0;
+	c += ft_printstr("0x10");
+	c += ft_printhex((int)ptr, 'x');
+	return (c);
+}
