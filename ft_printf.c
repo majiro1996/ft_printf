@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:41:29 by manujime          #+#    #+#             */
-/*   Updated: 2022/11/23 16:59:17 by manujime         ###   ########.fr       */
+/*   Updated: 2022/11/24 12:42:08 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_formats(va_list args, const char format)
 	else if (format == 's')
 		len += ft_printstr(va_arg(args, char *));
 	else if (format == 'x' || format == 'X')
-		len += ft_printhex(va_arg(args, unsigned int), format);
+		len += ft_printhex(va_arg(args, unsigned long), format);
 	else if (format == 'd' || format == 'i')
 		len += ft_printnbr(va_arg(args, int));
 	else if (format == 'p')

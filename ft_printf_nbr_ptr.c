@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:41:41 by manujime          #+#    #+#             */
-/*   Updated: 2022/11/24 11:23:08 by manujime         ###   ########.fr       */
+/*   Updated: 2022/11/24 12:41:53 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_printnbr(int nbr)
 	return (c + 1);
 }
 
-int	ft_printhex(unsigned int nbr, char f)
+int	ft_printhex(unsigned long nbr, char f)
 {
 	int		k;
 	int		c;
@@ -67,7 +67,7 @@ int	ft_printptr(void *ptr)
 	int		c;
 
 	c = 0;
-	c += ft_printstr("0x10");
-	c += ft_printhex((int)ptr, 'x');
+	c += ft_printstr("0x");
+	c += ft_printhex((unsigned long)ptr, 'x');
 	return (c);
 }
