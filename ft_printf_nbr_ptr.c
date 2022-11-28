@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:41:41 by manujime          #+#    #+#             */
-/*   Updated: 2022/11/24 13:41:40 by manujime         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:25:09 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	ft_printnbr(int nbr)
 
 	c = 0;
 	if (nbr == -2147483648)
+	{
 		c += ft_printstr("-2147483648");
+		return (c);
+	}
 	if (nbr < 0)
 	{
 		c += ft_printchar('-');
@@ -45,12 +48,13 @@ int	ft_printhex(unsigned long nbr, char f)
 	char	str[25];
 
 	c = 0;
-	if (nbr == 0)
-		return (ft_printchar('0'));
-	base = "0123456789abcdef";
+	if (f == 'x')
+		base = "0123456789abcdef";
 	if (f == 'X')
 		base = "0123456789ABCDEF";
-	while (nbr)
+	if (nbr == 0)
+		return (ft_printchar('0'));
+	while (nbr != 0)
 	{
 		str[c] = base[nbr % 16];
 		nbr = nbr / 16;
@@ -80,7 +84,7 @@ int	ft_printuns(unsigned int nbr)
 	if (nbr / 10 != 0)
 	{
 		if (nbr > 9)
-			c += ft_printnbr(nbr / 10);
+			c += ft_printuns(nbr / 10);
 		else
 		{
 			return (ft_printchar((nbr % 10) + '0'));

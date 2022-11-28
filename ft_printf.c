@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:41:29 by manujime          #+#    #+#             */
-/*   Updated: 2022/11/24 13:46:31 by manujime         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:29:37 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,19 @@ int	ft_printstr(char *str)
 	int	c;
 
 	c = 0;
-	while (str[c])
+	if (!str)
 	{
-		write(1, &str[c], 1);
-		c++;
+		write(1, "(null)", 6);
+		c += 6;
+		return (c);
+	}
+	else
+	{
+		while (str[c])
+		{
+			write(1, &str[c], 1);
+			c++;
+		}
 	}
 	return (c);
 }
@@ -41,7 +50,7 @@ int	ft_formats(va_list args, const char format)
 	else if (format == 's')
 		len += ft_printstr(va_arg(args, char *));
 	else if (format == 'x' || format == 'X')
-		len += ft_printhex(va_arg(args, unsigned long), format);
+		len += ft_printhex(va_arg(args, unsigned int), format);
 	else if (format == 'd' || format == 'i')
 		len += ft_printnbr(va_arg(args, int));
 	else if (format == 'u')
@@ -69,14 +78,15 @@ int	ft_printf(char const *string, ...)
 			len += ft_formats(args, string[c + 1]);
 			c += 2;
 		}
-		if (string[c] != '%')
+		else
+		{
 			len += ft_printchar(string[c]);
-		c++;
+			c++;
+		}
 	}
 	va_end(args);
 	return (len);
 }
-
 /*
 int	main(void)
 {
@@ -91,8 +101,8 @@ int	main(void)
 	len = 0;
 	c = 'Y';
 	string = "Yes, strings are working 1234";
-	nbr = 123456;
-	ngbr = -123456;
+	nbr = 42;
+	ngbr = -2147483647;
 	len = ft_printf("characers: %c \n", c);
 	printf("%i \n", len);
 	len = printf("characers: %c \n", c);
@@ -109,9 +119,9 @@ int	main(void)
 	printf("%i \n", len);
 	len = printf("decimal and integrers: %i \n", ngbr);
 	printf("%i \n", len);
-	len = ft_printf("hex: %X \n", nbr);
+	len = ft_printf("hex: %x \n", nbr);
 	printf("%i \n", len);
-	len = printf("hex: %X \n", nbr);
+	len = printf("hex: %x \n", nbr);
 	printf("%i \n", len);
 	len = ft_printf("pointer: %p \n", string);
 	printf("%i \n", len);
@@ -124,6 +134,10 @@ int	main(void)
 	len = ft_printf("unsigned %u \n", unit);
 	printf("%i \n", len);
 	len = printf("unsigned %u \n", unit);
+	printf("%i \n", len);
+	len = ft_printf(" %d %d %d %d \n", INT_MAX, INT_MIN, 0, -42);
+	printf("%i \n", len);
+	len = printf(" %d %d %d %d \n", INT_MAX, INT_MIN, 0, -42);
 	printf("%i \n", len);
 }
 */

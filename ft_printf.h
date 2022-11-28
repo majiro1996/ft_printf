@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:41:06 by manujime          #+#    #+#             */
-/*   Updated: 2022/11/24 13:42:02 by manujime         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:53:38 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdio.h> //delete after testing
+# include <limits.h>
+# include <stdlib.h>
 
 int		ft_printf(const char *string, ...);
 int		ft_printchar(int c);
