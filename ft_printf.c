@@ -88,6 +88,12 @@ int	ft_printf(char const *string, ...)
 	return (len);
 }
 /*
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <limits.h>
+# include <stdlib.h>
+
 int	main(void)
 {
 	int				len;
